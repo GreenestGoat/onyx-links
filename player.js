@@ -1441,9 +1441,9 @@ setInterval(function() {
 document.addEventListener('DOMContentLoaded', initApp);
 
 // Initial setup with the first episode
-if (savedTime) {
+/*if (savedTime) {
   video.currentTime = parseFloat(savedTime);
-}
+}*/
 
 exitButton.addEventListener('click', function() {
   window.history.back();
