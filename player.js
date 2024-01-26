@@ -63,6 +63,8 @@ var sessionLogoContainer = document.getElementById('session-logo-container')
 var skipMiddleLeft = document.getElementById('skip-middle-left');
 var skipMiddleRight = document.getElementById('skip-middle-right');
 
+video.setAttribute('crossorigin', 'anonymous');
+
 // Disable right-click context menu
 document.addEventListener('contextmenu', function(event) {
 event.preventDefault();
