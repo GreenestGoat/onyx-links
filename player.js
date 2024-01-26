@@ -63,61 +63,6 @@ var sessionLogoContainer = document.getElementById('session-logo-container')
 var skipMiddleLeft = document.getElementById('skip-middle-left');
 var skipMiddleRight = document.getElementById('skip-middle-right');
 
-
-function initializeMovieDetails() {
-  /*var titleLogo = document.getElementById("title-logo");*/
-
-  var url = window.location.href;
-  var movieId = getMovieIdFromUrl(url); // Extract the movie ID from the URL
-
-  var apiKey = "da72863000dbb66afa7fd2ae0e653f74"; // Replace with your TMDB API key
-
-  // Function to extract the movie ID from the URL
-  function getMovieIdFromUrl(url) {
-    var hashIndex = url.lastIndexOf('#');
-    if (hashIndex !== -1 && hashIndex < url.length - 1) {
-      return url.substring(hashIndex + 1);
-    }
-    return null;
-  }
-
-  // Function to update the movie details based on the entered movie ID
-  function updateMovieDetails(movieId) {
-      var apiUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`;
-    
-      // Fetch the movie details from the TMDB API
-      fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-          video.poster = `https://image.tmdb.org/t/p/original${data.backdrop_path}`;
-          sessionMovieTitle.textContent = data.title;
-          
-          // Assuming the logo data is available in data.logo
-          if (data.logo && data.logo.file_path) {
-            sessionLogoImage.src.src = `https://image.tmdb.org/t/p/original/${data.logo.file_path}`;
-          } else {
-            // Handle the case when logo data is not available
-            sessionLogoImage.src = ""; // Set a default logo or hide the logo element
-          }
-        })
-        .catch(error => {
-          console.log("Error fetching movie details:", error);
-        });
-  }
-
-  // Call the updateMovieDetails function initially with the extracted movie ID
-  if (movieId) {
-    updateMovieDetails(movieId);
-  }
-
-  // Update the URL with the new movie ID
-  var newUrl = url.substr(0, url.lastIndexOf('#') + 1) + movieId;
-  window.history.replaceState({}, document.title, newUrl);
-}
-
-// Call the initializeMovieDetails function when the page has finished loading
-window.addEventListener('load', initializeMovieDetails);
-
 // Disable right-click context menu
 document.addEventListener('contextmenu', function(event) {
 event.preventDefault();
