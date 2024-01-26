@@ -1,0 +1,1715 @@
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap');
+
+body {
+  background-color: transparent; /* set the background color to a dark gray */
+}
+
+.hide-scrollbar
+{
+    overflow: auto;
+    -ms-overflow-style: none; /* IE 11 */
+    scrollbar-width: none; /* Firefox 64 */
+}
+
+/* Hide scrollbars on all elements */
+body::-webkit-scrollbar,
+body *::-webkit-scrollbar {
+  overflow: auto;
+  -ms-overflow-style: none; /* IE 11 */
+  scrollbar-width: none; /* Firefox 64 */
+  width: 0;
+  height: 0;
+  display: none;
+  opacity: 0;
+  overflow: auto;
+  -ms-overflow-style: none; /* IE 11 */
+  scrollbar-width: none; /* Firefox 64 */
+}
+
+/* Firefox */
+body {
+  overflow: auto;
+  -ms-overflow-style: none; /* IE 11 */
+  scrollbar-width: none; /* Firefox 64 */
+  scrollbar-width: none;
+  overflow: auto;
+  -ms-overflow-style: none; /* IE 11 */
+  scrollbar-width: none; /* Firefox 64 */
+}
+
+/* Hide scrollbars on all elements */
+body::-webkit-scrollbar,
+body *::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox */
+body {
+  scrollbar-width: none;
+}
+
+/* Internet Explorer 11 */
+body {
+  -ms-overflow-style: none;
+  background-color: #000;
+}
+
+/* Video Player */
+#video-player-container {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #000;
+  cursor: none; /* add this line to hide the mouse by default */
+  outline: none;
+  border: none;
+}
+
+video {
+  background-color: rgb(0, 0, 0); /* set the background color to a dark gray */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit:contain;
+  transition: width 0.2s ease, height 0.2s ease, all 0.2s ease;
+}
+
+#video {
+  background-color: rgb(0, 0, 0); /* set the background color to a dark gray */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit:contain;
+  transition: width 0.2s ease, height 0.2s ease, all 0.2s ease;
+}
+
+#captions-styles {
+  display: none;
+  pointer-events: none;
+  user-select: none;
+  border: none;
+  outline: none;
+  position: absolute;
+  left: 0;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  width: 100%;
+  bottom: 0px;
+  z-index: 20;
+  z-index: 9998;
+  transition: text 0.2s ease, font-size 0.2s ease, size 0.2s ease, font 0.2s ease, all 0.2s ease;
+}
+
+#captionContainer {
+  display: none;
+  padding: 16px;
+  bottom: 95px;
+  border-radius: 5px;
+  pointer-events: none;
+  user-select: none;
+  border: none;
+  outline: none;
+  position: relative;
+  left: 0;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, .66);
+  max-width: 20.5%;
+  min-width: fit-content;
+  height: 0px;
+  font-weight: normal;
+  font-family: 'Open Sans', sans-serif;
+  color: rgba(255, 255, 255, 1);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  font-size: clamp(6px, 3vw, 22px);
+  z-index: 9999;
+  transition: text 0.2s ease, font-size 0.2s ease, size 0.2s ease, font 0.2s ease, all 0.2s ease;
+  backdrop-filter: blur(15px); /* Add the blur filter */
+}
+
+
+
+#stats {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 200px;
+  background: #fff;
+  padding: 10px;
+  z-index: 10;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+::cue {
+  font-size: 0px;
+  opacity: 0px;
+  display: none;
+  outline: none;
+  border: none;
+  background: transparent;
+  color: rgba(0, 0, 0, .0);
+  pointer-events: none;
+  user-select: none;
+}
+
+.hidden {
+  display: none;
+}
+
+
+#loading-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  background: transparent;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  pointer-events: none; /* Allow click events to pass through */
+}
+
+.loader {
+  border: 6px solid rgba(255, 255, 255, 0.8);
+  border-left-color: transparent;
+  border-radius: 50%;
+}
+
+.loader {
+  border: 6px solid rgba(255, 255, 255, 0.8);
+  border-left-color: transparent;
+  width: 60px;
+  height: 60px;
+}
+
+.loader {
+  border: 6px solid rgba(255, 255, 255, 0.8);
+  border-left-color: transparent;
+  width: 60px;
+  height: 60px;
+  animation: spin89345 1s linear infinite;
+}
+
+@keyframes spin89345 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/*.spinner svg {
+  width: 115px;
+  height: 115px;
+  transform-origin: center;
+  animation: rotate4 2s linear infinite;
+ }
+ 
+ circle {
+  fill: none;
+  stroke: hsl(0, 0%, 100%);
+  stroke-width: 1.35;
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  animation: dash4 1.5s ease-in-out infinite;
+ }
+ 
+ @keyframes rotate4 {
+  100% {
+   transform: rotate(360deg);
+  }
+ }
+ 
+ @keyframes dash4 {
+  0% {
+   stroke-dasharray: 1, 200;
+   stroke-dashoffset: 0;
+  }
+ 
+  50% {
+   stroke-dasharray: 90, 200;
+   stroke-dashoffset: -35px;
+  }
+ 
+  100% {
+   stroke-dashoffset: -125px;
+  }
+} */
+
+#overlay-bar {
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  position: relative;
+  justify-content: flex-start;
+}
+
+#exit-container {
+  margin-left: 35px;
+  display: flex;
+  justify-content: flex-start;
+  width: fit-content;
+  height: 80px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  align-items: center;
+  text-align: center;
+  transition: all 0.2s ease;
+  z-index: 9999;
+}
+
+#session-logo-container {
+  margin-left: 35px;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  height: 80px;
+  position: absolute;
+  /*padding-left: 15px;
+  padding-right: 15px;*/
+  padding-left: 6px;
+  left: 44px;
+  top: 0;
+  align-items: center;
+  text-align: center;
+  transition: all 0.2s ease;
+  z-index: 9999;
+  user-select: none;
+  pointer-events: none;
+}
+
+#session-movie-title {
+  display: flex;
+  max-height: 30px;
+  width: auto;
+  font-size: 20.5px;
+  font-weight: 500;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #f0f0f0;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 2.5px;
+}
+
+#session-logo-image {
+  display: flex;
+  max-height: 30px;
+  width: auto;
+  display: none;
+}
+
+#cast-container {
+  margin-right: 35px;
+  display: flex;
+  justify-content: flex-start;
+  width: fit-content;
+  height: 80px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  align-items: center;
+  text-align: center;
+  transition: all 0.2s ease;
+  z-index: 9999;
+}
+
+#quality {
+  transition: all 0.1s ease;
+  width: 225px;
+  max-height: 50px;
+  min-height: 50px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: light;
+  font-size: 18px;
+  top: 3.5%;
+  right: 2.25%;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.40);
+  border: none;
+  border-radius: 25px;
+  user-select: none;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  text-align: center;
+  z-index: 3;
+  color: #ffffff;
+}
+
+#quality-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  user-select: none;
+  font-family: 'Open Sans', sans-serif;;
+}
+
+#skip-button {
+  position: fixed;
+  top: 3.3%;
+  right: 1%;
+  z-index: 3;
+  align-items: center;
+  display: flex;
+  display: none;
+  /* opacity: 0.5;
+  transition: opacity 0.3s ease-out; */
+  cursor: pointer; /* Disable pointer events to prevent interaction */
+}
+
+#play-button,
+#exit-button,
+#pause-button,
+#forward-button,
+#backward-button,
+#mute-button,
+#pip-button,
+#audio-button,
+#captions-button,
+#settings-button,
+#fullscreen-button,
+#report-button,
+#skip-button,
+#lock-button,
+#library-button,
+#shrink-button {
+  background-color: transparent;
+}
+
+#lock-button {
+  position: fixed;
+  top: 4.5%;
+  right: 4%;
+  z-index: 3;
+}
+
+
+/* #onscreen-prompt {
+  position: fixed;
+  bottom: 50%;
+  left: 50%
+} */
+
+#time-display,
+#text-overlay,
+#show-title,
+#remaining-time,
+#elapsed-time,
+#episode-title {
+  user-select: none;
+  pointer-events: none;
+}
+
+#skip-intro-holder {
+  user-select: none;
+  background: transparent;
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  bottom: 102.5px;
+  right: 45px;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+  display: none;
+}
+
+#skip-intro-button {
+  background-color: rgba(255, 255, 255, 0.99);
+  border-radius: 5px;
+  color: #000000;
+  padding: 9px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  font-size: 13.8px;
+  font-weight: 500;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  outline: none;
+  border: none;
+  user-select: none;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+#skip-intro-button:active,
+#skip-intro-button:hover {
+  opacity: 0.8;
+}
+
+#next-episode-holder {
+  user-select: none;
+  background: transparent;
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  bottom: 102.5px;
+  right: 45px;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+  display: none;
+}
+
+#next-episode-holder button:active,
+#next-episode-holder button:hover {
+  opacity: 0.8;
+}
+
+#watch-credits-button {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+  color: #ffffff;
+  padding: 9.5px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  font-size: 13.8px;
+  font-weight: 500;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  outline: none;
+  border: none;
+  user-select: none;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: all 0.1s ease;
+}
+
+#next-episode-button {
+  background-color: rgba(255, 255, 255, 0.99);
+  border-radius: 5px;
+  color: #000000;
+  padding: 9px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  font-size: 13.8px;
+  font-weight: 500;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  outline: none;
+  border: none;
+  user-select: none;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+
+
+#shadow1 {
+  position: absolute;
+    --tw-gradient-from: #000;
+  --tw-gradient-from-position: 0%;
+  --tw-gradient-to: transparent;
+  --tw-gradient-to-position: 100%;
+  background-image: linear-gradient(to bottom,var(--tw-gradient-stops));
+  --tw-gradient-from: #000 var(--tw-gradient-from-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  --tw-gradient-to: transparent var(--tw-gradient-to-position);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100px;
+  z-index: 2;
+  transition: all 0.1s ease;
+  rotate: 180deg;
+}
+
+#shadow2 {
+  position: absolute;
+  --tw-gradient-from: #000;
+  --tw-gradient-from-position: 0%;
+  --tw-gradient-to: transparent;
+  --tw-gradient-to-position: 100%;
+  background-image: linear-gradient(to bottom,var(--tw-gradient-stops));
+  --tw-gradient-from: #000 var(--tw-gradient-from-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  --tw-gradient-to: transparent var(--tw-gradient-to-position);
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100px;
+  z-index: 2;
+  transition: all 0.1s ease;
+}
+
+
+
+#shadow-full {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.3);
+  transition: all 0.1s ease;
+}
+
+#stats-container {
+  min-height: 325px;
+  max-height: 600px;
+  min-width: 360px;
+  max-width: 360px;
+  top: 102.5px;
+  left: 45px;
+  position: absolute;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, .66);
+  border-radius: 20px;
+  backdrop-filter: blur(15px); /* Add the blur filter */
+  display: flex;
+  color: #ffffff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-align: left;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  text-wrap: wrap;
+  text-overflow: ellipsis;
+  user-select: none;
+  font-size: 14px;
+  padding: 12px;
+  transition: all 0.1s ease;
+  display: none;
+}
+
+#overlay-quality,
+#overlay-speed,
+#overlay-captions {
+  display: none;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 102.5px;
+  right: 45px;
+  width: 350px;
+  height: fit-content;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #0A0A0A;
+  border: 2px solid #262626;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  transition: all 0.1s ease;
+  z-index: 9999;
+  overflow: hidden;
+  user-select: none;
+}
+
+#overlay #overlay-main-header {
+  pointer-events: none;
+  user-select: none;
+  cursor: default;
+}
+
+#overlay #overlay-main-header,
+#overlay #overlay-quality-header,
+#overlay #overlay-captions-header,
+#overlay #overlay-speed-header {
+  padding: 8px 8px 8px 8px;
+  height: fit-content;
+  width: 298px;
+  text-align: left;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 13px;
+  font-weight: normal;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #bdbdbd;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+#overlay #overlay-main-header svg,
+#overlay #overlay-quality-header svg,
+#overlay #overlay-captions-header svg,
+#overlay #overlay-speed-header svg {
+  margin-right: 5px;
+}
+
+#overlay #overlay-line {
+  background-color: #262626;
+  margin-bottom: 10px;
+  margin-left: 6px;
+  margin-top: 3.5px;
+  height: 1px;
+  border-radius: 0px;
+  width: 298px;
+  display: flex;
+  pointer-events: none;
+  user-select: none;
+}
+
+#overlay button {
+  padding: 8px 8px 8px 8px;
+  user-select: none;
+  height: 40px;
+  width: 314px;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  font-weight: normal;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #ffffff;
+  transition: all 0.01s ease;
+  background: transparent;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  cursor: pointer
+}
+
+#left-items {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#right-items {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#right-items img {
+  height: 100%;
+  border-radius: 5px;
+  width: auto;
+  display: flex;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+#right-items div {
+  font-size: 12px;
+  background-color: rgba(51, 51, 51, 0.35);
+  color: #fafafa;
+  border-radius: 5px;
+  padding: 8px;
+  width: fit-content;
+  height: fit-content;
+  backdrop-filter: blur(15px);
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+#overlay button svg {
+  margin-right: 10px;
+  height: 22px;
+  width: 22px;
+}
+
+#overlay button:first-child {
+  margin-top: 25px; /* Add top margin to the first button */
+}
+
+#overlay button:last-child {
+  margin-bottom: 25px; /* Add bottom margin to the last button */
+}
+
+#overlay button:hover {
+  background: rgba(134, 134, 134, 0.45);
+  color: rgba(255, 255, 255, 1);
+  cursor: pointer;
+  text-align: left; /* Align text to the left */
+}
+
+#overlay button:hover #right-items div{
+  background-color: rgba(27, 27, 27, 0.55);
+}
+
+.overlay.hidden {
+  /*transform: translateY(18px);*/
+  display: none;
+  pointer-events: none;
+  user-select: none;
+}
+
+#text-overlay {
+  width: 100%; /* This will make the text-overlay take full width of the parent */
+  text-align: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: light;
+  color: #ffffff;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  z-index: 3;
+}
+
+#home-header {
+  font-weight: light;
+  opacity: 0.5;
+  margin-right: 17px;
+  margin-left: 8px;
+  align-items: center;
+  text-align: center;
+  transition: opacity 0.15s ease-out;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#slash {
+  font-weight: light;
+  opacity: 0.5;
+  height: 30px;
+  width: 2.25px;
+  background: #ffffff;
+  rotate: 25deg;
+  align-items: center;
+  text-align: center;
+}
+
+#show-title {
+  margin-left: 17px;
+  text-align: center;
+  z-index: 3;
+  align-items: center;
+  font-weight: normal;
+}
+
+#episode-title {
+  align-items: center;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  font-family: 'Open Sans', sans-serif;
+  color: #8C858C;
+  z-index: 3;
+}
+
+/*#remaining-time {
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  font-size: 15px;
+  display: flex;
+  position: relative;
+  color: #ececec;
+  font-weight: 550;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  pointer-events: none;
+  cursor: none;
+  user-select: none;
+  z-index: 3;
+  width: fit-content;
+  transition: text 0.2s ease, all 0.2s ease;
+  letter-spacing: 0.25px;
+}
+
+#time-breaker {
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  font-size: 15px;
+  display: flex;
+  position: relative;
+  color: #ececec;
+  font-weight: 550;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  pointer-events: none;
+  cursor: none;
+  user-select: none;
+  z-index: 3;
+  width: fit-content;
+  transition: text 0.2s ease, all 0.2s ease;
+  margin-left: 8.5px;
+  margin-right: 8.5px;
+  letter-spacing: 0.25px;
+}*/
+
+#elapsed-time,
+#remaining-time,
+#time-breaker {
+	/* Font & Text */
+	font-family: "Open Sans";
+	font-size: 16px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	letter-spacing: normal;
+	line-height: 24px;
+	text-decoration: none solid rgb(255, 255, 255);
+	text-align: center;
+	text-indent: 0px;
+	text-transform: none;
+	vertical-align: baseline;
+	white-space: normal;
+	word-spacing: 0px;
+
+	/* Color & Background */
+	background-attachment: scroll;
+	background-color: rgba(0, 0, 0, 0);
+	background-image: none;
+	background-position: 0% 0%;
+	background-repeat: repeat;
+	color: rgb(255, 255, 255);
+
+	/* Box */
+	height: 24px;
+	width: fit-content;
+	border: 0px solid rgb(229, 231, 235);
+	border-top: 0px solid rgb(229, 231, 235);
+	border-right: 0px solid rgb(229, 231, 235);
+	border-bottom: 0px solid rgb(229, 231, 235);
+	border-left: 0px solid rgb(229, 231, 235);
+	margin-left: 3px;
+  margin-right: 3px;
+	padding: 0px;
+	max-height: none;
+	min-height: auto;
+	max-width: none;
+	min-width: auto;
+
+	/* Positioning */
+	position: static;
+	top: auto;
+	bottom: auto;
+	right: auto;
+	left: auto;
+	float: none;
+	display: block;
+	clear: none;
+	z-index: auto;
+
+	/* List */
+	list-style-image: none;
+	list-style-type: disc;
+	list-style-position: outside;
+
+	/* Table */
+	border-collapse: separate;
+	border-spacing: 0px 0px;
+	caption-side: top;
+	empty-cells: show;
+	table-layout: auto;
+
+	/* Miscellaneous */
+	overflow: visible;
+	cursor: pointer;
+	visibility: visible;
+
+	/* Effects */
+	transform: none;
+	transition: all 0s ease 0s;
+	outline-offset: 0px;
+	box-sizing: border-box;
+	resize: none;
+	text-shadow: none;
+	text-overflow: clip;
+	word-wrap: normal;
+	box-shadow: none;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+/*#elapsed-time {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+  font-size: 15px;
+  position: relative;
+  color: #ececec;
+  font-weight: 550;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  z-index: 3;
+  pointer-events: none;
+  cursor: none;
+  user-select: none;
+  width: fit-content;
+  transition: text 0.2s ease, all 0.2s ease;
+  margin-left: 0px;
+  letter-spacing: 0.25px;
+}*/
+
+#live-state-dot {
+  margin-left: 12px;
+  height: 7px;
+  width: 7px;
+  border-radius: 50%;
+  background-color: #ececec;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  position: relative;
+  display: none;
+}
+
+#live-state {
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  font-size: 15px;
+  display: flex;
+  position: relative;
+  color: #ececec;
+  font-weight: 550;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  pointer-events: none;
+  cursor: none;
+  user-select: none;
+  z-index: 3;
+  width: fit-content;
+  transition: text 0.2s ease, all 0.2s ease;
+  display: none;
+  margin-left: 9px;
+}
+
+#skip-middle-left {
+  position: absolute;
+  display: flex;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 150px;
+  height: 100%;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  z-index: 9999;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+}
+
+#skip-middle-right {
+  position: absolute;
+  display: flex;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 150px;
+  height: 100%;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  z-index: 9999;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+}
+
+#skip-middle-right svg,
+#skip-middle-left svg{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+#click-element {
+  width: 100%;
+  height: calc(100% - 260px); /* Subtract the width of the sidebar from the total width */
+  position: absolute;
+  z-index: 9999;
+  cursor: default;
+  align-items: center;
+  top: 100px;
+  left: 0;
+  justify-content: center;
+  display: flex;
+  background: rgba(0, 0, 0, .0);
+  opacity: 0;
+  user-select: none;
+}
+
+#middle-input {
+  transition: all 0.2s ease;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  pointer-events: none;
+  z-index: 9999;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#pause-middle,
+#play-middle {
+  transition: opacity 0.12s ease, transform 0.2s ease;
+  user-select: none;
+  pointer-events: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  position: absolute;
+  border-radius: 50%;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transform: scale(0.4);
+  backdrop-filter: blur(15px);
+  /*outline: 10px solid rgba(0, 0, 0, 0.01);*/
+}
+
+#pause-middle {
+  z-index: 1;
+}
+
+#play-middle {
+  z-index: 2;
+}
+
+/* Control Bar */
+#control-bar {
+  transition: padding 0.2s ease;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  z-index: 3;
+  /* display: none; */
+  background: transparent;
+  user-select: none;
+}
+
+.right-buttons, .volume-buttons {
+  display: flex;
+}
+
+/*
+.left-buttons {
+  margin-left: 32px;
+  display: flex;
+  justify-content: flex-start;
+  width: fit-content;
+  height: 73px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  align-items: center;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.volume-buttons {
+  justify-content: flex-start;
+  z-index: 3;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  position: absolute;
+  height: 73px;
+  left: 0;
+  width: fit-content;
+  transition: all 0.2s ease;
+}
+
+.right-buttons {
+  margin-right: 32px;
+  display: flex;
+  justify-content: flex-end;
+  width: fit-content;
+  height: 73px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  align-items: center;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.material-icons-round.md-36 { font-size: 31.3064px; color: #ffffff; font-weight: 400;}
+.material-icons-round.md-42 { font-size: 42px; }
+.material-icons-round.md-18 { font-size: 22px; color: #000000; margin-right: 10px;}
+.material-icons-round.md-100 { font-size: 48px; color: #ffffff;}
+
+#episode-button,
+#cast-button,
+#exit-button,
+#mute-button,
+#quality-button,
+#pip-button,
+#captions-button,
+#fullscreen-button,
+#settings-button,
+#shrink-button,
+#skip-next,
+#skip-previous,
+#play-button,
+#pause-button,
+#forward-button,
+#backward-button,
+#restart-button {
+  user-select: none;
+  background: transparent;
+  border: none;
+  color: rgb(255,255,255);
+  cursor: pointer;
+  transition: all 0s ease 0s;
+  font-family: "Material Icons Round";
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  border-radius: 12px;
+  border-radius: 5px;
+  height: 40px;
+  width: 40px;
+  outline: none;
+  z-index: 5;
+  backdrop-filter: blur(0px);
+}
+
+#episode-button:hover,
+#cast-button:hover,
+#exit-button:hover,
+#skip-next:hover,
+#skip-previous:hover,
+#mute-button:hover,
+#quality-button:hover,
+#settings-button:hover,
+#play-button:hover,
+#pause-button:hover,
+#forward-button:hover,
+#backward-button:hover,
+#restart-button:hover,
+#pip-button:hover,
+#captions-button:hover,
+#mute-button:hover,
+#fullscreen-button:hover,
+#shrink-button:hover {
+  background: rgba(160, 160, 160, 0.35);
+}
+
+#episode-button:active,
+#cast-button:active,
+#exit-button:active,
+#skip-next:active,
+#skip-previous:active,
+#mute-button:active,
+#quality-button:active,
+#settings-button:active,
+#play-button:active,
+#pause-button:active,
+#forward-button:active,
+#backward-button:active,
+#restart-button:active,
+#pip-button:active,
+#captions-button:active,
+#mute-button:active,
+#fullscreen-button:active,
+#shrink-button:active {
+  background: rgba(160, 160, 160, 0.35);
+}
+
+#control-bar button i {
+  font-size: 1.8rem;
+  width: 1em;
+  text-align: center;
+}
+
+#time-control {
+  align-items: center;
+  text-align: center;
+  display: flex;
+  box-sizing: border-box;
+  position: absolute;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+#time-bar-wrapper {
+  user-select: none;
+  position: absolute;
+  display: flex;
+  left: 41px;
+  width: calc(100% - 82px);
+  bottom: 61px;
+  padding: 35px 0px 10px 0;
+  z-index: 3;
+  cursor: pointer;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  transition: height 0.1s ease, width 0.1s ease, postition 0.1s ease, all 0.1s ease;
+}*/
+
+.left-buttons {
+  margin-left: 35px;
+  display: flex;
+  justify-content: flex-start;
+  width: fit-content;
+  height: 80px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  align-items: center;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+/*@media screen and (max-width: 720px) {
+  .left-buttons {
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    user-select: none;
+  }
+  #play-button,
+  #pause-button {
+    cursor: pointer;
+  }
+  .volume-buttons,
+  #volume-control {
+    display: none;
+  }
+  #middle-input,
+  #click-element {
+    display: none;
+  }
+}*/
+
+/* .pause-button,
+.play-button {
+  margin-right: 20px;
+  margin-left: 20px;
+} */
+
+.volume-buttons {
+  justify-content: flex-start;
+  z-index: 3;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  position: absolute;
+  height: 80px;
+  left: 0;
+  width: fit-content;
+  transition: all 0.2s ease;
+}
+
+.right-buttons {
+  margin-right: 35px;
+  display: flex;
+  justify-content: flex-end;
+  width: fit-content;
+  height: 80px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  align-items: center;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.material-icons-round.md-36 { font-size: 31.3064px; color: #ffffff; font-weight: 400;}
+.material-icons-round.md-42 { font-size: 42px; }
+.material-icons-round.md-18 { font-size: 22px; color: #000000; margin-right: 10px;}
+.material-icons-round.md-100 { font-size: 48px; color: #ffffff;}
+
+#episode-button,
+#cast-button,
+#exit-button,
+#mute-button,
+#quality-button,
+#pip-button,
+#captions-button,
+#fullscreen-button,
+#settings-button,
+#shrink-button,
+#skip-next,
+#skip-previous,
+#play-button,
+#pause-button,
+#forward-button,
+#backward-button,
+#restart-button {
+  user-select: none;
+  background: transparent;
+  border: none;
+  color: rgb(255,255,255);
+  cursor: pointer;
+  transition: all 0s ease 0s;
+  font-family: "Material Icons Round";
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  /*border-radius: 12px;*/
+  border-radius: 6px;
+  padding: 7px;
+  outline: none;
+  z-index: 5;
+  backdrop-filter: blur(0px);
+}
+
+#episode-button:hover,
+#cast-button:hover,
+#exit-button:hover,
+#skip-next:hover,
+#skip-previous:hover,
+#mute-button:hover,
+#quality-button:hover,
+#settings-button:hover,
+#play-button:hover,
+#pause-button:hover,
+#forward-button:hover,
+#backward-button:hover,
+#restart-button:hover,
+#pip-button:hover,
+#captions-button:hover,
+#mute-button:hover,
+#fullscreen-button:hover,
+#shrink-button:hover {
+  background: rgba(128, 128, 128, 0.35);
+}
+
+/*#settings-button svg {
+  transition: all 0.1s ease;
+}
+
+#settings-button:hover svg,
+#settings-button:active svg {
+  transform: rotate(45deg);
+}*/
+
+#episode-button:active,
+#cast-button:active,
+#exit-button:active,
+#skip-next:active,
+#skip-previous:active,
+#mute-button:active,
+#quality-button:active,
+#settings-button:active,
+#play-button:active,
+#pause-button:active,
+#forward-button:active,
+#backward-button:active,
+#restart-button:active,
+#pip-button:active,
+#captions-button:active,
+#mute-button:active,
+#fullscreen-button:active,
+#shrink-button:active {
+  background: rgba(128, 128, 128, 0.35);
+  /*backdrop-filter: blur(5px);*/
+}
+
+#control-bar button i {
+  font-size: 1.8rem;
+  width: 1em;
+  text-align: center;
+}
+
+#time-control {
+  align-items: center;
+  text-align: center;
+  display: flex;
+  box-sizing: border-box;
+  position: absolute;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+#time-bar-wrapper {
+  user-select: none;
+  position: absolute;
+  display: flex;
+  left: 45px;
+  width: calc(100% - 90px);
+  bottom: 68px;
+  padding: 35px 0px 10px 0;
+  z-index: 3;
+  cursor: pointer;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  transition: height 0.1s ease, width 0.1s ease, postition 0.1s ease, all 0.1s ease;
+}
+
+#time-bar {
+  position: relative;
+  width: 100%;
+  height: 5px;
+  background-color: rgba(250, 250, 250, 0.3);
+  border-radius: 170px;
+  transform: scaleY(1);
+  transition: height 0.1s ease, width 0.1s ease;
+  backdrop-filter: blur(2.5px);
+}
+
+#thumbnail-container {
+  position: absolute;
+  top: -140.5px; /* Adjust the top position as needed */
+  user-select: none;
+  pointer-events: none;
+  height: 154px;
+  width: auto;
+  z-index: 10000;
+  border-radius: 8px;
+  transition: all 0.05s ease;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  text-align: center;
+  image-rendering: crisp-edges;
+  outline: 3px solid #1a1a1a;
+  background-color: #000000;
+  overflow: hidden;
+  display: none;
+  object-fit: contain;
+}
+
+#thumbnail-image {
+  user-select: none;
+  pointer-events: none;
+  position: relative;
+  transition: all 0.05s ease;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  overflow: hidden;
+  width: auto;
+  height: auto;
+  image-rendering: crisp-edges;
+}
+
+/* #time-bar-wrapper:hover {
+  cursor: pointer;
+}
+
+#time-bar-wrapper:hover #time-bar {
+  transform: scaleY(2.6);
+  cursor: pointer;
+} */
+
+#time-bar-wrapper:active #played-bar::after,
+#time-bar-wrapper:hover #played-bar::after {
+  transform: translateY(-50%) scale(1.1);
+  cursor: pointer;
+  opacity: 1; 
+}
+
+#time-bar-wrapper:active #played-bar::after {
+  outline: 4.65px solid rgba(255, 255, 255, 0.4);
+}
+
+#played-bar {
+  max-width: 100%;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 5px;
+  background-color: /* #FFA07A #ffffff  */ #ffffff;
+  border-radius: 170px;
+  z-index: 2;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#played-bar::after {
+  content: "";
+  display: block;
+  position: absolute;
+  justify-content: center;
+  right: -10px;
+  top: 50%;
+  align-items: center;
+  transform: translateY(-50%);
+  /* opacity: 0; */
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  opacity: 0;
+  background-color: /* #FFA07A #ffffff */ #ffffff;
+  z-index: 3;
+  /* Add shadow */
+  transition: all 0.1s ease;
+}
+
+/* #played-bar, #buffered-bar {
+  transition: width 0.18s ease-in-out;
+  flex: 1; 
+} */
+
+
+#buffered-bar {
+  max-width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 5px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 170px;
+  z-index: 1;
+  transition: all 0.1s ease;
+}
+
+#volume-control {
+  display: flex;
+  align-items: center;
+  margin-right: 2px
+}
+
+#volume-slider {
+  cursor: pointer;
+  display: flex;
+  -webkit-appearance: none;
+  height: 5px;
+  background-color: rgba(255, 255, 255, 0.9);
+  outline: none;
+  border-radius: 170px;
+  transition: all 0.25s ease;
+  margin-left: 10px;
+  width: 0;
+  transform-origin: left;
+  transform: scaleX(0);
+  opacity: 0;
+}
+
+#volume-control:hover #volume-slider, 
+#volume-slider:focus-within {
+  width: 100px;
+  transform: scaleX(1);
+  margin-right: 15px;
+  opacity: 1;
+}
+
+#volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background-color: #ffffff;
+  border-radius: 100%;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  opacity: 0;
+}
+
+#volume-slider:hover::-webkit-slider-thumb {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+#volume-slider:active:-webkit-slider-thumb {
+  opacity: 1;
+  transform: scale(1.1);
+  outline: 4px solid rgba(255, 255, 255, 0.4);
+}
+
+#shrink-button {
+  display: none;
+}
+
+/* Remove Focus Outline */
+#control-bar button:focus,
+#control-bar input[type="range"]:focus,
+#control-bar button:active,
+#control-bar input[type="range"]:active {
+  outline: none;
+}
+
+/* Fullscreen Mode */
+#video-player-container.fullscreen #video {
+  object-fit: contain;
+}
+
+#video-player-container.fullscreen #control-bar {
+  height: 115px;
+}
+
+/* Styling for Hover Effects
+#control-bar button:hover,
+#control-bar input[type="range"]:hover {
+  color: #22D9D9;
+} */
+
+/* Media Queries */
+
+/* Add this code to hide the mouse cursor after a set time */
+#video-player-container:hover {
+  cursor: default;
+}
+#video-player-container:hover #control-bar {
+  cursor: auto;
+}
+#video-player-container:hover #control-bar:hover {
+  cursor: default;
+}
+
