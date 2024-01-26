@@ -177,7 +177,7 @@ document.addEventListener('contextmenu', function(event) {
 // var skipToTime = 95; // Time to skip to in seconds
 
 // Save video progress when the video is played
-video.addEventListener('play', function() { 
+/*video.addEventListener('play', function() { 
   localStorage.setItem('videoProgress-' + currentEpisodeIndex, video.currentTime);
   localStorage.setItem('videoIndex', currentEpisodeIndex);
   localStorage.setItem('videoProgress-' + currentEpisodeIndex, 0);
@@ -202,7 +202,7 @@ window.addEventListener('beforeunload', function() {
   localStorage.setItem('videoProgress-' + currentEpisodeIndex, 0);
   localStorage.setItem('videoIndex', currentEpisodeIndex);
   localStorage.setItem('videoProgress-' + currentEpisodeIndex, video.currentTime);
-});
+});*/
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -1441,9 +1441,9 @@ setInterval(function() {
 document.addEventListener('DOMContentLoaded', initApp);
 
 // Initial setup with the first episode
-/*if (savedTime) {
+if (savedTime) {
   video.currentTime = parseFloat(savedTime);
-}*/
+}
 
 exitButton.addEventListener('click', function() {
   window.history.back();
