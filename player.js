@@ -177,7 +177,7 @@ document.addEventListener('contextmenu', function(event) {
 // var skipToTime = 95; // Time to skip to in seconds
 
 // Save video progress when the video is played
-video.addEventListener('play', function() { 
+/*video.addEventListener('play', function() { 
   localStorage.setItem('videoProgress-' + currentEpisodeIndex, video.currentTime);
   localStorage.setItem('videoIndex', currentEpisodeIndex);
   localStorage.setItem('videoProgress-' + currentEpisodeIndex, 0);
@@ -202,7 +202,7 @@ window.addEventListener('beforeunload', function() {
   localStorage.setItem('videoProgress-' + currentEpisodeIndex, 0);
   localStorage.setItem('videoIndex', currentEpisodeIndex);
   localStorage.setItem('videoProgress-' + currentEpisodeIndex, video.currentTime);
-});
+});*/
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
     video.textTracks[0].mode = 'hidden';
   }
 
-  var savedIndex = parseInt(localStorage.getItem('videoIndex'));  
+ /* var savedIndex = parseInt(localStorage.getItem('videoIndex'));*/  
   /*var savedProgress = parseFloat(localStorage.getItem('videoProgress-' + savedIndex));*/
   
   if (!isNaN(savedIndex) && !isNaN(savedProgress)) {
@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-video.addEventListener('timeupdate', function() {
+/*video.addEventListener('timeupdate', function() {
   localStorage.setItem('videoProgress', video.currentTime);
   localStorage.setItem('videoIndex', currentEpisodeIndex);
   if (video.currentTime >= introStartTime && video.currentTime <= introEndTime) {
@@ -257,7 +257,7 @@ video.addEventListener('timeupdate', function() {
   } else {
     skipIntroButton.style.display = 'none';
   }
-});
+});*/
 
 // skipIntroButton.addEventListener('click', function() {
   // video.currentTime = skipToTime;
@@ -1196,7 +1196,7 @@ const liveState = document.getElementById('live-state');
 const liveStateDot = document.getElementById('live-state-dot');
 const timeBreaker = document.getElementById('time-breaker');
 
-const savedTime = localStorage.getItem('videoTime');
+/*const savedTime = localStorage.getItem('videoTime');*/
 
 function initApp() {
   shaka.polyfill.installAll();
@@ -1434,16 +1434,16 @@ video.addEventListener("progress", function() {
   }
 });
 
-setInterval(function() {
+/*setInterval(function() {
   localStorage.setItem('videoTime', video.currentTime);
-}, 1000);
+}, 1000);*/
 
 document.addEventListener('DOMContentLoaded', initApp);
 
 // Initial setup with the first episode
-if (savedTime) {
+/*if (savedTime) {
   video.currentTime = parseFloat(savedTime);
-}
+}*/
 
 exitButton.addEventListener('click', function() {
   window.history.back();
