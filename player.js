@@ -1245,7 +1245,17 @@ async function initPlayer() {
   // Try to load a manifest.
   // This is an asynchronous process.
   try {
-    await player.load(manifestUri);
+    const response = await fetch(manifestUri, { mode: 'cors' });
+    if (response.ok) {
+      await player.load(manifestUri);
+      // This runs if the asynchronous load is successful.
+      console.log('The video has now been loaded!');
+
+      // Rest of the code...
+    } else {
+      throw new Error('Failed to load manifest: ' + response.status);
+    }
+    /*await player.load(manifestUri);*?
     // This runs if the asynchronous load is successful.
     console.log('The video has now been loaded!');
 
