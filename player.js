@@ -177,7 +177,7 @@ document.addEventListener('contextmenu', function(event) {
 // var skipToTime = 95; // Time to skip to in seconds
 
 // Save video progress when the video is played
-/*video.addEventListener('play', function() { 
+video.addEventListener('play', function() { 
   localStorage.setItem('videoProgress-' + currentEpisodeIndex, video.currentTime);
   localStorage.setItem('videoIndex', currentEpisodeIndex);
   localStorage.setItem('videoProgress-' + currentEpisodeIndex, 0);
@@ -202,7 +202,7 @@ window.addEventListener('beforeunload', function() {
   localStorage.setItem('videoProgress-' + currentEpisodeIndex, 0);
   localStorage.setItem('videoIndex', currentEpisodeIndex);
   localStorage.setItem('videoProgress-' + currentEpisodeIndex, video.currentTime);
-});*/
+});
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   var savedIndex = parseInt(localStorage.getItem('videoIndex'));  
-  var savedProgress = parseFloat(localStorage.getItem('videoProgress-' + savedIndex));
+  /*var savedProgress = parseFloat(localStorage.getItem('videoProgress-' + savedIndex));*/
   
   if (!isNaN(savedIndex) && !isNaN(savedProgress)) {
     currentEpisodeIndex = savedIndex; 
@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-/*video.addEventListener('timeupdate', function() {
+video.addEventListener('timeupdate', function() {
   localStorage.setItem('videoProgress', video.currentTime);
   localStorage.setItem('videoIndex', currentEpisodeIndex);
   if (video.currentTime >= introStartTime && video.currentTime <= introEndTime) {
@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', function() {
   } else {
     skipIntroButton.style.display = 'none';
   }
-});*/
+});
 
 // skipIntroButton.addEventListener('click', function() {
   // video.currentTime = skipToTime;
