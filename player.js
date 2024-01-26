@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-video.addEventListener('timeupdate', function() {
+/*video.addEventListener('timeupdate', function() {
   localStorage.setItem('videoProgress', video.currentTime);
   localStorage.setItem('videoIndex', currentEpisodeIndex);
   if (video.currentTime >= introStartTime && video.currentTime <= introEndTime) {
@@ -257,7 +257,7 @@ video.addEventListener('timeupdate', function() {
   } else {
     skipIntroButton.style.display = 'none';
   }
-});
+});*/
 
 // skipIntroButton.addEventListener('click', function() {
   // video.currentTime = skipToTime;
