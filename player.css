@@ -538,7 +538,7 @@ video {
 
 
 
-#shadow1 {
+/*#shadow1 {
   position: absolute;
     --tw-gradient-from: #000;
   --tw-gradient-from-position: 0%;
@@ -575,8 +575,36 @@ video {
   height: 100px;
   z-index: 2;
   transition: all 0.1s ease;
+}*/
+
+#shadow1 {
+  position: absolute;
+  --tw-gradient-color1: #000;
+  --tw-gradient-color2: transparent;
+  background-image: linear-gradient(to bottom, var(--tw-gradient-color1) 0%, var(--tw-gradient-color2) 100%);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100px;
+  z-index: 2;
+  transition: all 0.1s ease;
+  transform: rotate(180deg);
 }
 
+#shadow2 {
+  position: absolute;
+  --tw-gradient-color1: #000;
+  --tw-gradient-color2: transparent;
+  background-image: linear-gradient(to bottom, var(--tw-gradient-color1) 0%, var(--tw-gradient-color2) 100%);
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100px;
+  z-index: 2;
+  transition: all 0.1s ease;
+}
 
 
 #shadow-full {
