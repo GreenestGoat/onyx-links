@@ -1214,6 +1214,7 @@ async function initPlayer() {
   // Create a Player instance.
   const video = document.getElementById('video');
   const player = new shaka.Player(video);
+  video.crossOrigin = 'anonymous'; // Set crossOrigin attribute
 
   // Function to format the stats object into an HTML list
   function formatStats(stats) {
