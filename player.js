@@ -1188,81 +1188,7 @@ loopButton.addEventListener('click', function() {
   toggleLoop();
 });
 
-const video = document.getElementById('video');
-const spinner = document.querySelector(".spinner");
-let currentEpisodeIndex = localStorage.getItem('videoIndex') || 0;
-const liveState = document.getElementById('live-state');
-const liveStateDot = document.getElementById('live-state-dot');
-const timeBreaker = document.getElementById('time-breaker');
-
-function initApp() {
-  if (Hls.isSupported()) {
-    initPlayer();
-  } else {
-    console.error('HLS is not supported!');
-  }
-}
-
-async function initPlayer() {
-  const hls = new Hls();
-  hls.attachMedia(video);
-
-  function updateStatsUI() {
-    const stats = hls.stats;
-    const formattedStats = formatStats(stats);
-    statsContainer.innerHTML = formattedStats;
-  }
-
-  setInterval(updateStatsUI, 1000); // Update every 1 second
-
-  window.hls = hls;
-
-  hls.on(Hls.Events.ERROR, onErrorEvent);
-
-  try {
-    await hls.loadSource(manifestUri);
-    hls.on(Hls.Events.MANIFEST_PARSED, function() {
-      const isLive = hls.levels[hls.currentLevel].details.live;
-
-      if (isLive) {
-        liveState.style.display = 'flex';
-        liveStateDot.style.display = 'flex';
-        remainingTime.style.display = 'none';
-        elapsedTime.style.display = 'none';
-        timeBreaker.style.display = 'none';
-      } else {
-        liveState.style.display = 'none';
-        liveStateDot.style.display = 'none';
-        remainingTime.style.display = 'flex';
-        elapsedTime.style.display = 'flex';
-        timeBreaker.style.display = 'flex';
-      }
-    });
-  } catch (e) {
-    onError(e);
-  }
-
-  window.addEventListener("load", showSpinner);
-  video.addEventListener("waiting", showSpinner);
-  video.addEventListener("playing", hideSpinner, video.play());
-
-  video.addEventListener("loadeddata", function() {
-    video.addEventListener("playing", function() {
-      hideSpinner();
-      enableSkip();
-    });
-    
-    video.play();
-  });
-
-  // Rest of the code...
-}
-
-// The rest of the code remains the same
-
-document.addEventListener('DOMContentLoaded', initApp);
-
-/*const manifestUri = video.src;
+const manifestUri = video.src;
 
 const spinner = document.querySelector(".spinner");
 let currentEpisodeIndex = localStorage.getItem('videoIndex') || 0;
@@ -1398,7 +1324,7 @@ async function initPlayer() {
   });
 
   // Rest of the code...
-}*/
+}
 
 function onErrorEvent(event) {
   onError(event.detail);
