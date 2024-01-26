@@ -1190,32 +1190,37 @@ loopButton.addEventListener('click', function() {
   toggleLoop();
 });
 
-const video = document.getElementById('video');
-const spinner = document.querySelector('.spinner');
+const manifestUri = video.src;
+
+const spinner = document.querySelector(".spinner");
 let currentEpisodeIndex = localStorage.getItem('videoIndex') || 0;
 const liveState = document.getElementById('live-state');
 const liveStateDot = document.getElementById('live-state-dot');
 const timeBreaker = document.getElementById('time-breaker');
 
+//const savedTime = localStorage.getItem('videoTime');
+
 function initApp() {
-  if (Hls.isSupported()) {
+  shaka.polyfill.installAll();
+
+  if (shaka.Player.isBrowserSupported()) {
     initPlayer();
   } else {
-    console.error('HLS.js is not supported in this browser!');
+    console.error('Browser not supported!');
   }
 }
 
 async function initPlayer() {
-  const manifestUri = video.src;
-  const hls = new Hls();
-  hls.loadSource(manifestUri);
-  hls.attachMedia(video);
+  // Create a Player instance.
+  const video = document.getElementById('video');
+  const player = new shaka.Player(video);
+  video.crossOrigin = 'anonymous'; // Set crossOrigin attribute
 
   // Function to format the stats object into an HTML list
   function formatStats(stats) {
     // Exclude state history and switch history from the stats object
     const { stateHistory, switchHistory, ...filteredStats } = stats;
-
+  
     let html = '<ul>';
     for (const key in filteredStats) {
       html += `<li>${key}: ${filteredStats[key]}</li>`;
@@ -1226,7 +1231,7 @@ async function initPlayer() {
 
   // Update the UI with the stats in real-time
   function updateStatsUI() {
-    const stats = hls.stats;
+    const stats = player.getStats();
     const formattedStats = formatStats(stats);
     statsContainer.innerHTML = formattedStats;
   }
@@ -1234,34 +1239,36 @@ async function initPlayer() {
   // Call the updateStatsUI function periodically
   setInterval(updateStatsUI, 1000); // Update every 1 second
 
+  // Attach player to the window to make it easy to access in the JS console.
+  window.player = player;
+
   // Listen for error events.
-  hls.on(Hls.Events.ERROR, onErrorEvent);
+  player.addEventListener('error', onErrorEvent);
 
   // Try to load a manifest.
   // This is an asynchronous process.
   try {
-    await hls.startLoad();
-
+    await player.load(manifestUri);
     // This runs if the asynchronous load is successful.
     console.log('The video has now been loaded!');
 
     // Get the available video tracks/resolutions from the manifest.
-    const tracks = hls.levels;
+    const tracks = player.getVariantTracks();
 
     // Sort tracks in descending order based on height.
     tracks.sort((a, b) => b.height - a.height);
 
     const autoButton = document.createElement('button');
-    const qualityState = document.getElementById('quality-state');
+    var qualityState = document.getElementById("quality-state")
     autoButton.id = 'autoButton';
     autoButton.innerHTML = `
-      <div id="left-items">
-        Auto
-      </div>
+    <div id="left-items">
+      Auto
+    </div>
     `;
     autoButton.addEventListener('click', () => {
       // Enable auto mode for adaptive streaming.
-      hls.currentLevel = -1;
+      player.configure({ abr: { enabled: true } });
       qualityState.textContent = 'auto';
     });
     overlayQuality.appendChild(autoButton);
@@ -1276,13 +1283,13 @@ async function initPlayer() {
       `;
       resolutionButton.addEventListener('click', () => {
         // Change to the selected resolution.
-        hls.currentLevel = track.level;
+        player.selectVariantTrack(track, true);
         qualityState.textContent = track.height + 'p';
       });
       overlayQuality.appendChild(resolutionButton);
     });
 
-    const isLive = hls.levels[hls.currentLevel].details.live;
+    const isLive = player.isLive();
 
     // Display or hide the 'live-state' element based on whether the manifest is live
     if (isLive) {
@@ -1303,19 +1310,19 @@ async function initPlayer() {
     onError(e);
   }
 
-  window.addEventListener('load', showSpinner);
+  window.addEventListener("load", showSpinner);
   // Event listener for video buffering
-  video.addEventListener('waiting', showSpinner);
+  video.addEventListener("waiting", showSpinner);
 
   // Event listener for video playing
-  video.addEventListener('playing', hideSpinner);
+  video.addEventListener("playing", hideSpinner, video.play());
 
-  video.addEventListener('loadeddata', function () {
-    video.addEventListener('playing', function () {
+  video.addEventListener("loadeddata", function() {
+    video.addEventListener("playing", function() {
       hideSpinner();
       enableSkip();
     });
-
+    
     video.play();
   });
 
